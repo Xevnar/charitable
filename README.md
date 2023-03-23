@@ -39,9 +39,6 @@ awful.screen.connect_for_each_screen(function(s)
          end
     end
 
-    -- create a special scratch tag for double buffering
-    s.scratch = awful.tag.add('scratch-' .. s.index, {})
-
     s.mytaglist = awful.widget.taglist({
        screen = s,
        filter  = awful.widget.taglist.filter.all,

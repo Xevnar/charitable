@@ -39,20 +39,20 @@ end
 --{{{ sharetags.tag_move: move a tag to a screen
 -- @param t : the tag object to move
 -- @param screen_target : the screen object to move to
-function sharetags.tag_move(t, screen_target)
+function sharetags.tag_move(t, target_screen)
     local ts = t or tag.selected()
 
-    if not screen_target then return end
+    if not target_screen then return end
 
     local current_screen = ts.screen
 
-    if current_screen and screen_target ~= current_screen then
+    if current_screen and target_screen ~= current_screen then
         -- switch for tag
         local mynumber = ts.number
 
         -- sort tags
-        local index = #screen_target.tags+1
-        for i, screen_tag in pairs(screen_target.tags) do
+        local index = #target_screen.tags + 1
+        for i, screen_tag in pairs(target_screen.tags) do
             local number = screen_tag.number
             if number ~= nil and mynumber < number then
                 index = i
@@ -72,9 +72,9 @@ function sharetags.tag_move(t, screen_target)
 
         -- switch for all clients on tag
         if #ts:clients() > 0 then
-            for _ , c in ipairs(ts:clients()) do
+            for _, c in ipairs(ts:clients()) do
                 if not c.sticky then
-                    c.screen = screen_target
+                    c.screen = target_screen
                     c:tags({ ts })
 
                     -- Fix maximized client if display sizes not equal

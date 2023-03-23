@@ -31,7 +31,7 @@ function sharetags.create_tags(names, layouts)
         tags[tagnumber].number = tagnumber
 
         awful.layout.set(layouts[tagnumber], tags[tagnumber])
-     end
+    end
     return tags
 end
 --}}}
@@ -112,7 +112,7 @@ function sharetags.select_tag(t, target_screen)
     -- If there was a moving tag then the focus on the window is lost.  Checking
     -- if this is the same tag and thus restore focus on the window
     if is_tag_moved and is_tag_select and #t:clients() > 0 and prev_focus then
-       capi.client.focus = prev_focus
+        capi.client.focus = prev_focus
     end
 end
 
